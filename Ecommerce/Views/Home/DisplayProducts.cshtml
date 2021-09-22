@@ -1,0 +1,9 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Product List";
+}
+
+<h1>Hello World</h1>
+
+@foreach(var product in Model)
+    { <span>@product.Name</span> }

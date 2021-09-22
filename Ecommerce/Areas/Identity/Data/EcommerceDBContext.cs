@@ -17,6 +17,10 @@ namespace Ecommerce.Data
         {
         }
 
+        public EcommerceDBContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
