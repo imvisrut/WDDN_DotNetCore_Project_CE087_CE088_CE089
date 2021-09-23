@@ -20,7 +20,8 @@ namespace Ecommerce.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var db = new ApplicationDbContext();
+            return View(db.ProductTable.ToList());
         }
 
         public IActionResult Privacy()
