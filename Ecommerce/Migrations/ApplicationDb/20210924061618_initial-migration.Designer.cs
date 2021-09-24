@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210924040355_seeding")]
-    partial class seeding
+    [Migration("20210924061618_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,42 @@ namespace Ecommerce.Migrations.ApplicationDb
                             Name = "RK ROYAL KLUDGE",
                             Price = 3000,
                             Stock = 100
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "CPU",
+                            Description = "Ryzen 5 3600 6-Core 3.6GHz (4.2GHz Max Boost) CPU Processor | 500G SSD – Up to 30x Faster Than Traditional HDD NVIDIA GeForce GTX 1660 Super 6GB GDDR5 Video Card | 16 GB Gaming Memory DDR4 3000 with Heat Spreader | Windows 10 Home 64 - bit",
+                            ImageURL1 = "https://m.media-amazon.com/images/I/71kwAe2O6xL._AC_SL1500_.jpg",
+                            ImageURL2 = "https://m.media-amazon.com/images/I/9182gfeh28L._AC_SL1500_.jpg",
+                            MainImageURL = "https://m.media-amazon.com/images/I/81Vm7yrdKCL._AC_SL1500_.jpg",
+                            Name = "SkyTech Blaze II",
+                            Price = 60000,
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Games",
+                            Description = "Lightning Speed - Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do. Stunning Games - Marvel at incredible graphics and experience new PS5 features.",
+                            ImageURL1 = "https://m.media-amazon.com/images/I/619BkvKW35L._SL1500_.jpg",
+                            ImageURL2 = "https://m.media-amazon.com/images/I/71v7RDRYBTL._SL1500_.jpg",
+                            MainImageURL = "https://m.media-amazon.com/images/I/71vWi5Iuz3L._SL1500_.jpg",
+                            Name = "PlayStation 5 Console",
+                            Price = 50000,
+                            Stock = 400
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Headphones",
+                            Description = "Built for a new generation - Fine-tuned for 3D Audio on PS5 consoles. Enjoy comfortable gaming with refined earpads and headband strap. Play in style with a sleek design that complements the PS5 console. Available when feature is supported by game.",
+                            ImageURL1 = "https://m.media-amazon.com/images/I/71lrh6vzPcL._SL1500_.jpg",
+                            ImageURL2 = "https://m.media-amazon.com/images/I/71tU3AxObuL._SL1500_.jpg",
+                            MainImageURL = "https://m.media-amazon.com/images/I/610SsJ5aAQL._SL1393_.jpg",
+                            Name = "Sony PULSE 3D Wireless Headset",
+                            Price = 6000,
+                            Stock = 300
                         });
                 });
 #pragma warning restore 612, 618

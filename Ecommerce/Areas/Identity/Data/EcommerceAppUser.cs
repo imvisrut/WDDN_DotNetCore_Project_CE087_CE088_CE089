@@ -17,5 +17,9 @@ namespace Ecommerce.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(200)")]
+        public string Address { get; set; }
     }
 }

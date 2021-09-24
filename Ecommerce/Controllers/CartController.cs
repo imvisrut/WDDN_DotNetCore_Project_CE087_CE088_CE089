@@ -52,5 +52,10 @@ namespace Ecommerce.Controllers
             TempData["message"] = "Item is successfully removed from your cart.";
             return Redirect("/Cart");
         }
+
+        public IActionResult CheckoutCart()
+        {
+            return View();
+        }
     }
 }
