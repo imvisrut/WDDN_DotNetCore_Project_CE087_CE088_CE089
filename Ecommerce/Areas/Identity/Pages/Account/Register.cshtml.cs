@@ -58,6 +58,16 @@ namespace Ecommerce.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Mobile No")]
+            public string PhoneNumber { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -86,7 +96,7 @@ namespace Ecommerce.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new EcommerceAppUser { FirstName = Input.FirstName, LastName = Input.LastName, UserName = Input.Email, Email = Input.Email };
+                var user = new EcommerceAppUser { FirstName = Input.FirstName, LastName = Input.LastName, PhoneNumber = Input.PhoneNumber, Address = Input.Address, UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

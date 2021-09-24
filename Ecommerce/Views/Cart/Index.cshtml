@@ -10,7 +10,12 @@
     </div>
 }
 
-<div>
+@if(ViewData["isEmpty"] != null)
+{
+    <h1>No Items Found</h1>
+}
+else
+{
     <section class="mt-5 d-flex">
     @foreach (var product in Model)
     {
@@ -25,4 +30,4 @@
     }
     </section>
     <a href="/Cart/CheckoutCart" class="btn btn-primary">Checkout</a>
-</div>
+}
