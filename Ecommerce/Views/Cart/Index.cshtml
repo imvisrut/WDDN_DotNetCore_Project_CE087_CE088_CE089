@@ -1,0 +1,25 @@
+﻿@model List<Product>
+@{ 
+    ViewBag.Title = "Cart";
+}
+
+@if(TempData["message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["message"]
+    </div>
+}
+
+<section class="mt-5 d-flex">
+    @foreach (var product in Model)
+    {
+        <div class="card m-2" style="width: 18rem;">
+          <a href="/Product/@product.Id"><img class="card-img-top" src="@product.MainImageURL" alt="Card image cap"></a>
+          <div class="card-body">
+            <h5 class="card-title">@product.Name</h5>
+            <p class="card-text">@product.Description</p>
+          </div>
+          <a href="/Cart/RemoveFromCart?product_id=@product.Id" class="btn btn-danger">Remove</a>
+        </div>
+    }
+</section>
