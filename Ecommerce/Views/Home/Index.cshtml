@@ -3,6 +3,28 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["message"]
+    </div>
+}
+
+@*<section class="mt-5 d-flex">
+        @foreach (var product in Model)
+        {
+            <div class="card m-2" style="width: 18rem;">
+                <a href="/Product/ProductDetail/@product.Id"><img class="card-img-top" src="@product.MainImageURL" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <a href="/Cart/AddToCart?product_id=@product.Id" class="btn d-block btn-warning">Add</a>
+                </div>
+            </div>
+        }
+    </section>*@
+
 <style>
     section {
         flex-wrap: wrap;
@@ -45,7 +67,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text description">@product.Description</p>
-                    <a href="#" class="btn d-block btn-warning">Add</a>
+                    <a href="/Cart/AddToCart?product_id=@product.Id" class="btn d-block btn-warning">Add to Cart</a>
                 </div>
             </div>
         </div>
