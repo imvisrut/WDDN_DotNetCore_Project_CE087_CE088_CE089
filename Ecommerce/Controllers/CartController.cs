@@ -12,18 +12,35 @@ namespace Ecommerce.Controllers
         public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            List<Product> cart_products = ( from c in _context.Cart join p in _context.ProductTable on c.ProductId equals p.Id where c.UserId == userId select new Product() { Id = p.Id, Name = p.Name, ImageURL1 = p.ImageURL1, ImageURL2 = p.ImageURL2, MainImageURL = p.MainImageURL, Price = p.Price, Stock = p.Stock, Description = p.Description }).ToList();
-            return View(cart_products);
+            if (userId == null)
+            {
+                TempData["message"] = "You need to login first.";
+                return Redirect("/Identity/Account/Login");
+            }
+            else
+            {
+                List<Product> cart_products = (from c in _context.Cart join p in _context.ProductTable on c.ProductId equals p.Id where c.UserId == userId select new Product() { Id = p.Id, Name = p.Name, ImageURL1 = p.ImageURL1, ImageURL2 = p.ImageURL2, MainImageURL = p.MainImageURL, Price = p.Price, Stock = p.Stock, Description = p.Description }).ToList();
+                return View(cart_products);
+            }
         }
 
         public IActionResult AddToCart()
         {
             int product_id = int.Parse(HttpContext.Request.Query["product_id"].ToString());
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _context.Cart.Add(new Cart() { UserId = userId, ProductId = product_id });
-            _context.SaveChanges();
-            TempData["message"] = "Item is successfully added to your cart.";
-            return Redirect("/");
+
+            if (userId == null)
+            {
+                TempData["message"] = "You need to login first.";
+                return Redirect("/Identity/Account/Login");
+            }
+            else
+            {
+                _context.Cart.Add(new Cart() { UserId = userId, ProductId = product_id });
+                _context.SaveChanges();
+                TempData["message"] = "Item is successfully added to your cart.";
+                return Redirect("/");
+            }
         }
         public IActionResult RemoveFromCart()
         {

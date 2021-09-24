@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Ecommerce.Data;
 using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,8 +16,19 @@ namespace Ecommerce.Controllers
         }
         public IActionResult Index()
         {
-            var db = new ApplicationDbContext();
-            return View(db.ProductTable.ToList());
+            string query_string = HttpContext.Request.Query["search"].ToString();
+            var _context = new ApplicationDbContext();
+
+            if(query_string == null)
+            {
+                var products = _context.ProductTable.ToList();
+                return View(products);
+            }
+            else
+            {
+                var search_products = _context.ProductTable.Where(p => p.Name.Contains(query_string)).ToList();
+                return View(search_products);
+            }
         }
 
         public IActionResult Privacy()
