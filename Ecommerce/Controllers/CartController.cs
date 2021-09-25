@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Linq;
 using System.Collections.Generic;
 using Ecommerce.Models;
+using Ecommerce.Data;
+using Ecommerce.Areas.Identity.Data;
 
 namespace Ecommerce.Controllers
 {
@@ -62,7 +64,20 @@ namespace Ecommerce.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<Product> Order_products = (from c in _context.Cart join p in _context.ProductTable on c.ProductId equals p.Id where c.UserId == userId select new Product() { Id = p.Id, Name = p.Name, ImageURL1 = p.ImageURL1, ImageURL2 = p.ImageURL2, MainImageURL = p.MainImageURL, Price = p.Price, Stock = p.Stock, Description = p.Description }).ToList();
+            EcommerceDBContext _userContext = new EcommerceDBContext();
+            EcommerceAppUser user = _userContext.Users.Where(u => u.Id == userId).FirstOrDefault();
+            ViewData["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
             return View(Order_products);
+        }
+
+        public IActionResult Confirm()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Cart> Order_products = (from c in _context.Cart where c.UserId == userId select new Cart() { Id = c.Id } ).ToList();
+            TempData["message"] = "Your order is confirmed it will be delivered.";
+            _context.Cart.RemoveRange(Order_products);
+            _context.SaveChanges();
+            return Redirect("/");
         }
     }
 }
