@@ -60,7 +60,9 @@ namespace Ecommerce.Controllers
 
         public IActionResult CheckoutCart()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Product> Order_products = (from c in _context.Cart join p in _context.ProductTable on c.ProductId equals p.Id where c.UserId == userId select new Product() { Id = p.Id, Name = p.Name, ImageURL1 = p.ImageURL1, ImageURL2 = p.ImageURL2, MainImageURL = p.MainImageURL, Price = p.Price, Stock = p.Stock, Description = p.Description }).ToList();
+            return View(Order_products);
         }
     }
 }

@@ -30,7 +30,7 @@
         flex-wrap: wrap;
     }
 
-    .col-md-4 {
+    .col-md-3 {
         margin-top: 5%;
     }
 
@@ -59,8 +59,8 @@
 <section class="d-flex">
     @foreach (var product in Model)
     {
-        <div class="col-md-4">
-            <div class="card shadow" style="width: 20rem;">
+        <div class="col-md-3">
+            <div class="card shadow" style="width: 16rem;">
                 <div class="inner embed-responsive embed-responsive-16by9">
                     <a href="/Product/ProductDetail/@product.Id"><img class="card-img-top embed-responsive-item" src="@product.MainImageURL" alt="Card image cap"></a>
                 </div>
