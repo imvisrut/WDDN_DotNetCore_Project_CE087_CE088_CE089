@@ -31,4 +31,4 @@ jobs:
       - name: Build and Publish package
         run: >
           dotnet build --configuration Release --no-restore
-          dotnet publish -c Release -r win-x64 -o ../publish Ecommerce.sln
+          dotnet publish -c Release -r win-x64 -o ./publish Ecommerce.sln
