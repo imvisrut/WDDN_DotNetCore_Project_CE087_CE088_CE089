@@ -29,6 +29,6 @@ jobs:
         uses: microsoft/setup-msbuild@v1
         
       - name: Build and Publish package
-        run: >
-          msbuild Ecommerce.sln
+        run: |
+          dotnet build
           dotnet publish -c Release -r win-x64 -o ./publish Ecommerce.sln
